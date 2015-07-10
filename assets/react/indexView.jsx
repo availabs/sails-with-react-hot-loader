@@ -2,7 +2,7 @@ var React = require('react'),
     Hello = require('jsx!./Hello.react');
 
 
-React.renderComponent(
+React.render(
     <Hello who='world'/>,
     document.body
 );
