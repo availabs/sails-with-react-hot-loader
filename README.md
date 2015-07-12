@@ -1,4 +1,4 @@
-# react-webpack
+# sails-with-react-hot-loader
 
 NOTE: must have `webpack-dev-server` installed globally on the host server.
 
