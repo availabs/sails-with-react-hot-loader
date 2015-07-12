@@ -1,5 +1,5 @@
 var React = require('react'),
-    Hello = require('jsx!./Hello.react');
+    Hello = require('./Hello.react');
 
 
 React.render(

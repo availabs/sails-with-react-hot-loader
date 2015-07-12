@@ -1,23 +1,38 @@
+var path    = require('path'),
+    webpack = require('webpack');
+
+
 module.exports = {
     
-    entry: './assets/react/indexView.jsx',
+    entry : [
+        'webpack-dev-server/client?http://0.0.0.0:9999',
+        'webpack/hot/only-dev-server',
+        './assets/react/indexView.jsx',   
+    ],
 
     output: {
-        filename: './.tmp/public/react/bundle.js' /* default */
+        path: '.tmp/public/',
+        filename: 'bundle.js',
+        publicPath: 'http://localhost:9999/',
     },
 
     module: {
-        loaders: [ {   test: /\.jsx$/, loader: 'jsx-loader', } ]
-    },
+        loaders: [ { test: /\.jsx$|react\.js/, loaders: ['react-hot', 'jsx-loader?harmony'], }, ],
 
-    //externals: {
-        ////don't bundle the 'react' npm package with our bundle.js
-        ////but get it from a global 'React' variable
-        //'react': 'React'
-    //},
+        include: /assets/,
+    },
 
     resolve: {
         extensions: ['', '.js', '.jsx']
-    }
+    },
+
+    watch: true,
+
+    inline: true,
+
+    plugins: [
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.NoErrorsPlugin()
+    ]
 
 };
