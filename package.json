@@ -31,7 +31,7 @@
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/availab/sails-with-react-hot-loader.git"
+    "url": "git://github.com/availabs/sails-with-react-hot-loader.git"
   },
   "author": "paul",
   "license": "",
