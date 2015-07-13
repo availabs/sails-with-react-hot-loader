@@ -8,4 +8,5 @@ https://webpack.github.io/docs/webpack-dev-server.html#combining-with-an-existin
 
 Uses grunt-exec to start the webpack-dev-server. 
 
-
+This seem promising:
+https://github.com/webpack/webpack-dev-server/pull/127
