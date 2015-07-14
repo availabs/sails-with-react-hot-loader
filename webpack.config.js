@@ -1,48 +1,62 @@
 var path    = require('path'),
     webpack = require('webpack');
 
-var inDevelopment = (process.env.NODE_ENV === 'development');
-
-var entry = inDevelopment ?
-    [ 'webpack-dev-server/client?http://0.0.0.0:9999',
-      'webpack/hot/only-dev-server',
-      './assets/react/indexView.jsx', ] :
-
-    './assets/react/indexView.jsx';
+var webpackConfig;
 
 
-module.exports = {
+if (process.env.NODE_ENV === 'development') {
+
+    webpackConfig = {
+        entry : [ 'webpack-dev-server/client?http://0.0.0.0:9999',
+                  'webpack/hot/only-dev-server',
+                  './assets/react/indexView.jsx', 
+                ],
+
+        output: {
+            path       : '.tmp/public/',
+            filename   : 'bundle.js',
+            publicPath : 'http://localhost:9999/',
+        },
+
+        module: {
+            loaders: [{ test: /\.jsx$|react\.js/, loaders: ['react-hot', 'jsx-loader?harmony'] }],
+            include: /assets/,
+        },
+
+        resolve: {
+            extensions: ['', '.js', '.jsx'],
+        },
+
+        watch: true,
+
+        inline: true,
+
+        plugins: [ new webpack.HotModuleReplacementPlugin(),
+                   new webpack.NoErrorsPlugin(), ],
+
+        proxy: { "*": "http://localhost:1337" },
+    }
+
+} else { /* Production */
+
+    webpackConfig = {
+
+        entry: './assets/react/indexView.jsx',
     
-    entry : entry,
+        output: {
+            path     : '.tmp/public/',
+            filename : 'bundle.js',
+        },
 
-    output: {
-        path: '/home/paul/AVAIL/SailsHotLoading/sails-with-react-hot-loader/.tmp/public/',
-        filename: 'bundle.js',
-        publicPath: inDevelopment ? 'http://localhost:9999/' : '',
-    },
+        module: {
+            loaders: [{ test: /\.jsx$|react\.js/, loaders: ['jsx-loader?harmony'] }],
+            include: /assets/,
+        },
 
-    module: {
-        loaders: inDevelopment ? 
-                    [ { test: /\.jsx$|react\.js/, loaders: ['react-hot', 'jsx-loader?harmony'], }, ] :
-                    [ { test: /\.jsx$|react\.js/, loaders: ['jsx-loader?harmony'], }, ],
+        resolve: {
+            extensions: ['', '.js', '.jsx']
+        },
+    }
+}
 
-
-        include: /assets/,
-    },
-
-    resolve: {
-        extensions: ['', '.js', '.jsx']
-    },
-
-    watch: inDevelopment,
-
-    inline: inDevelopment,
-
-    plugins: inDevelopment ? 
-                [ new webpack.HotModuleReplacementPlugin(),
-                  new webpack.NoErrorsPlugin() ] :
-                [],
-
-    proxy: inDevelopment ? { "*": "http://localhost:1337" } : undefined,
-
-};
+module.exports = webpackConfig;
