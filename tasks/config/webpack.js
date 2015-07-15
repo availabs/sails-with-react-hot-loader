@@ -1,10 +1,5 @@
 "use strict";
 
-/**
- * Compile WebPack
- *
- * ---------------------------------------------------------------
- */
 module.exports = function(grunt) {
 
   var webpackConfig = require("../../webpack.config.js");

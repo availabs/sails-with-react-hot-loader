@@ -1,62 +1,61 @@
-var path    = require('path'),
-    webpack = require('webpack');
+var path = require('path');
+var webpack = require('webpack');
 
 var webpackConfig;
-
 
 if (process.env.NODE_ENV === 'development') {
 
     webpackConfig = {
-        entry : [ 'webpack-dev-server/client?http://0.0.0.0:9999',
-                  'webpack/hot/only-dev-server',
-                  './assets/react/indexView.jsx', 
-                ],
-
+        devtool: 'eval',
+        entry: [
+          'webpack-dev-server/client?http://localhost:11235',
+          'webpack/hot/dev-server',
+          './assets/react/indexView.jsx',
+        ],
         output: {
-            path       : '.tmp/public/',
-            filename   : 'bundle.js',
-            publicPath : 'http://localhost:9999/',
+          path: path.join(__dirname, '.tmp/public'),
+          filename: 'bundle.js',
+          publicPath: 'http://localhost:11235/',
         },
-
-        module: {
-            loaders: [{ test: /\.jsx$|react\.js/, loaders: ['react-hot', 'jsx-loader?harmony'] }],
-            include: /assets/,
-        },
-
+        plugins: [
+          new webpack.NoErrorsPlugin(),
+          new webpack.HotModuleReplacementPlugin(),
+        ],
         resolve: {
-            extensions: ['', '.js', '.jsx'],
+          extensions: ['', '.js', '.jsx']
         },
+        watch:true,
+        module: {
+          loaders: [{
+            test: /\.jsx?$|react\.js/,
+            loaders: ['react-hot', 'jsx'],
+            include: path.join(__dirname, 'assets')
+          }]
+        }
+    };
 
-        watch: true,
-
-        inline: true,
-
-        plugins: [ new webpack.HotModuleReplacementPlugin(),
-                   new webpack.NoErrorsPlugin(), ],
-
-        proxy: { "*": "http://localhost:1337" },
-    }
-
-} else { /* Production */
+} else {
 
     webpackConfig = {
 
         entry: './assets/react/indexView.jsx',
-    
+        
         output: {
-            path     : '.tmp/public/',
-            filename : 'bundle.js',
+          path: path.join(__dirname, '.tmp/public'),
+          filename: 'bundle.js',
         },
-
-        module: {
-            loaders: [{ test: /\.jsx$|react\.js/, loaders: ['jsx-loader?harmony'] }],
-            include: /assets/,
-        },
-
         resolve: {
-            extensions: ['', '.js', '.jsx']
+          extensions: ['', '.js', '.jsx']
         },
-    }
+        module: {
+          loaders: [{
+            test: /\.jsx?$|react\.js/,
+            loaders: ['react-hot', 'jsx'],
+            include: path.join(__dirname, 'assets')
+          }]
+        }
+    };
 }
+
 
 module.exports = webpackConfig;

@@ -7,6 +7,6 @@ module.exports = function (grunt) {
         'sails-linker:devJsJade',
         'sails-linker:devStylesJade',
         'sails-linker:devTplJade',
-        'exec:webpackServerLift',
+        'exec:webpackDevServerLift',
     ]);
 };

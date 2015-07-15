@@ -5,6 +5,5 @@ module.exports = function (grunt) {
         'less:dev',
         'copy:dev',
         'coffee:dev',
-        'webpack:build',
     ]);
 };

@@ -1,1 +1,5 @@
-<script src="bundle.js"></script>
+<% if (devEnv) { %>
+    <script src="http://localhost:11235/bundle.js"></script>
+<% } else { %> 
+    <script src="bundle.js"></script>
+<% } %>
