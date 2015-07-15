@@ -20,6 +20,7 @@ if (process.env.NODE_ENV === 'development') {
         plugins: [
           new webpack.NoErrorsPlugin(),
           new webpack.HotModuleReplacementPlugin(),
+          new webpack.optimize.OccurenceOrderPlugin(),
         ],
         resolve: {
           extensions: ['', '.js', '.jsx']
