@@ -9,7 +9,7 @@ if (process.env.NODE_ENV === 'development') {
         devtool: 'eval',
         entry: [
           'webpack-dev-server/client?http://localhost:11235',
-          'webpack/hot/dev-server',
+          'webpack/hot/only-dev-server',
           './assets/react/indexView.jsx',
         ],
         output: {
