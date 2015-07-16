@@ -48,10 +48,18 @@ if (process.env.NODE_ENV === 'development') {
         },
         plugins: [
             new webpack.optimize.UglifyJsPlugin({
-                compressor: {
-                    screw_ie8: true,
-                    warnings: false
-                }
+                compress: {
+                  warnings: false,
+                  sequences: true,
+                  dead_code: true,
+                  conditionals: true,
+                  booleans: true,
+                  unused: true,
+                  if_return: true,
+                  join_vars: true,
+                  drop_console: true,
+                  screw_ie8: true,
+                },
             }),
             new webpack.optimize.DedupePlugin(),
         ],
