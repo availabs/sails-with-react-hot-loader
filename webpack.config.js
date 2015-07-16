@@ -69,8 +69,9 @@ if (process.env.NODE_ENV === 'development') {
         module: {
           loaders: [{
             test: /\.jsx?$|react\.js/,
-            loaders: ['babel'],
-            include: path.join(__dirname, 'assets')
+            loader: 'babel',
+            //loader: 'babel?optional[]=runtime', /* npm install babel-runtime --save */
+            include: path.join(__dirname, 'assets'),
           }]
         }
     };
