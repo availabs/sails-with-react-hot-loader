@@ -10,6 +10,8 @@ var compileAssets = [
 
 if (process.env.NODE_ENV === 'development') {
     compileAssets[compileAssets.length] = 'exec:webpackDevServerLift';
+} else {
+    compileAssets[compileAssets.length] = 'exec:webpackBuild';
 }
 
 module.exports = function (grunt) {
