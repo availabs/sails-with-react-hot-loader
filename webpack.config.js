@@ -53,6 +53,7 @@ if (process.env.NODE_ENV === 'development') {
                     warnings: false
                 }
             }),
+            new webpack.optimize.DedupePlugin(),
         ],
         resolve: {
           extensions: ['', '.js', '.jsx']
