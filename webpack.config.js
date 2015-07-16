@@ -30,7 +30,7 @@ if (process.env.NODE_ENV === 'development') {
         module: {
           loaders: [{
             test: /\.jsx?$|react\.js/,
-            loaders: ['react-hot', 'jsx'],
+            loaders: ['react-hot', 'babel'],
             include: path.join(__dirname, 'assets')
           }]
         }
@@ -61,7 +61,7 @@ if (process.env.NODE_ENV === 'development') {
         module: {
           loaders: [{
             test: /\.jsx?$|react\.js/,
-            loaders: ['jsx'],
+            loaders: ['babel'],
             include: path.join(__dirname, 'assets')
           }]
         }
