@@ -15,6 +15,7 @@ if (process.env.NODE_ENV === 'development') {
         output: {
           path: path.join(__dirname, '.tmp/public'),
           filename: 'bundle.js',
+          //crossOriginLoading: "use-credentials",
           publicPath: 'http://localhost:11235/',
         },
         plugins: [
@@ -45,6 +46,14 @@ if (process.env.NODE_ENV === 'development') {
           path: path.join(__dirname, '.tmp/public'),
           filename: 'bundle.js',
         },
+        plugins: [
+            new webpack.optimize.UglifyJsPlugin({
+                compressor: {
+                    screw_ie8: true,
+                    warnings: false
+                }
+            }),
+        ],
         resolve: {
           extensions: ['', '.js', '.jsx']
         },
